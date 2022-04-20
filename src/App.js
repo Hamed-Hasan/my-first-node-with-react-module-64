@@ -3,34 +3,47 @@ import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [users, setUser] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:5000/users')
-    .then(res => res.json())
-    .then(data => setUser(data))
+  //   useEffect(() => {
+    //     fetch('http://localhost:5000/users')
+//     .then(res => res.json())
+//     .then(data => setUser(data))
    
-  }, []);
-const handleSubmit = event => {
-  event.preventDefault();
+//   }, []);
+// const handleSubmit = event => {
+//   event.preventDefault();
+//   const name = event.target.name.value
+//   const email = event.target.email.value
+//   const password = event.target.password.value
+//  const user = {name, email,password}
+
+//  fetch('http://localhost:5000/use', {
+//   method: 'POST', // or 'PUT'
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify(user),
+// })
+// .then(response => response.json())
+// .then(data => {
+  //   const newUser = [...users, data]
+  //   users.push(newUser)
+  //   // console.log(newUser)
+  //   // console.log('Success:', data);
+  // })
+  // }
+  const [users, setUser] = useState([]);
+useEffect(() => {
+  fetch('http://localhost:5000/array')
+  .then(res => res.json())
+  .then(data => setUser(data))
+}, []);
+const handleSubmit = (event) => {
+event.preventDefault()
   const name = event.target.name.value
   const email = event.target.email.value
   const password = event.target.password.value
- const user = {name, email,password}
-
- fetch('http://localhost:5000/use', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(user),
-})
-.then(response => response.json())
-.then(data => {
-  const newUser = [...users, data]
-  users.push(newUser)
-  // console.log(newUser)
-  // console.log('Success:', data);
-})
+  const user = {name, email ,password}
+  console.log(user);
 }
   return (
     <div className="App">
@@ -42,9 +55,9 @@ const handleSubmit = event => {
        <input type="submit" value="send" />
      </form>
      {
-       users.map(user => <div key={user.id}>
+       users.map((user, i) => <div key={i}>
          <h2>Name: {user.name}</h2>
-         <h2>Phone: {user.phone}</h2>
+         <h2>Email: {user.email}</h2>
        </div>)
      }
     </div>
