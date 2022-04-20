@@ -43,7 +43,16 @@ event.preventDefault()
   const email = event.target.email.value
   const password = event.target.password.value
   const user = {name, email ,password}
-  console.log(user);
+  // back_end data send
+  fetch('http://localhost:5000/postdata',{
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user)
+    .then(data => console.log('success',data))
+  })
+  
 }
   return (
     <div className="App">
